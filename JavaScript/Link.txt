@@ -1,0 +1,5 @@
+https://javascript.info/ | The Modern JavaScript Tutorial
+https://javascript30.com/ | JavaScript 30 — Build 30 things with vanilla JS in 30 days with 30 tutorials
+https://flexbox.io/ | What The Flexbox?! — A simple 20 video course that will help you master CSS Flexbox
+https://css-tricks.com/ | CSS-Tricks
+https://www.internetingishard.com/ | Interneting Is Hard | Web Development Tutorials For Complete Beginners
