@@ -1,0 +1,3 @@
+https://tympanus.net/Development/HoverEffectIdeas/
+https://freefrontend.com/css-hover-effects/
+https://redstapler.co/10-awesome-css-hamburger-menu/
