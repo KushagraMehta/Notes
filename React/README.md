@@ -49,12 +49,13 @@ class Welcome extends React.Component {
 }
 ```
 
-> | **Stateless component**     | **Stateful component**           |
-> | --------------------------- | -------------------------------- |
-> | When we only need props     | Dependent on state for rendering |
-> | Moreover a static component | Interactive on page              |
-> | Light weight component      | Heavy component                  |
-> |                             |                                  |
+| **Stateless component**     | **Stateful component**           |
+| --------------------------- | -------------------------------- |
+| When we only need props     | Dependent on state for rendering |
+| Moreover a static component | Interactive on page              |
+| Light weight component      | Heavy component                  |
+| Generating some markup      | Backend operations               |
+| Work as leaf component      | Might handle various components  |
 
 ---
 
@@ -83,28 +84,27 @@ class example extends Component{
     }
 ```
 
-> Whenever _setState()_ is called, React knows the state has changed, and calls the _render()_ method again to learn what should be on the screen. So, the new _this.state_ object is passed to _render()_ method will be different and React updates the DOM accordingly.
+Whenever _setState()_ is called, React knows the state has changed, and calls the _render()_ method again to learn what should be on the screen. So, the new _this.state_ object is passed to _render()_ method will be different and React updates the DOM accordingly.
 
 `React may batch multiple setState() calls into a single update for performance. Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.`
 
 ```jsx
-// Wrong
-this.setState({
-  STATE_1: this.state.xyz + this.props.abc,
-});
+setState(updater, [calback]);
 ```
 
-```jsx
-// Correct
-this.setState((state, props) => ({
-  STATE_1: state.xyz + props.abc,
-}));
-```
+`setState()` takes two arguments.
+
+- An updater
+  Either an _object literal_ OR _a function_.
+
+- An optional callback
+  setState() is asynchronous.
+  The callback is called when the Component state has actually updated.
 
 ### **this.setState(_function_) v/s this.setState(_object_)**
 
 - JavaScript is faster when swapping an old object reference for an entirely new object, rather than mutating anexisting object. This gives you **performance**.
-- In _functional way_ the merging is shallow, so this.setState({**STATE_1**}) leaves this.state.**OTHER** intact, but completely replaces this.state.**STATE_1**
+- In _object literal way_ the merging is shallow, so this.setState({**STATE_1**}) leaves this.state.**OTHER** intact, but completely replaces this.state.**STATE_1**
 
 ### **Unidirectional Data Flow 🌊**
 
@@ -137,13 +137,49 @@ BlogPostExcerpt.defaultProps = {
 
 ---
 
-## Presentational vs Container components
+## Handling Events
 
-| Presentational components | Container components            |
-| ------------------------- | ------------------------------- |
-| Generating some markup    | Backend operations              |
-| Stateless                 | Stateful                        |
-| Work as leaf component    | Might handle various components |
+- React events are named using camelCase, rather than lowercase.
+- With JSX you pass a function as the event handler, rather than a string.
+
+> You have to be careful about the meaning of this in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to [bind](https://javascript.info/bind) this.handleClick and pass it to onClick, this will be undefined when the function is actually called.
+
+---
+
+## Lifecycle Event
+
+![GitHub Logo](./react-lifecycle-methods-diagram.png)
+Image from [**here!**](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+[Article](https://www.freecodecamp.org/news/these-are-the-concepts-you-should-know-in-react-js-after-you-learn-the-basics-ee1d2f4b8030/)
+
+- `componentDidMount()`
+
+  invoked immediately after the component is inserted into the DOM
+
+- `componentWillUnmount()`
+
+  invoked immediately before a component is removed from the DOM
+
+- `getDerivedStateFromProps()`
+
+  invoked after a component is instantiated as well as when it receives brand new props
+
+> Note:
+> These methods are considered legacy and you should avoid them in new code:
+>
+> - [`UNSAFE_componentWillMount()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillmount)
+> - [`UNSAFE_componentWillUpdate()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillupdate)
+> - [`UNSAFE_componentWillReceiveProps()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops)
+
+---
+
+# Important link
+
+- [How to NOT React: Common Anti-Patterns and Gotchas in React](https://codeburst.io/how-to-not-react-common-anti-patterns-and-gotchas-in-react-40141fe0dcd)
+- [These are the concepts you should know in React.js (after you learn the basics)](https://www.freecodecamp.org/news/these-are-the-concepts-you-should-know-in-react-js-after-you-learn-the-basics-ee1d2f4b8030/)
+
+---
 
 # Bibliography📚
 
@@ -151,7 +187,3 @@ BlogPostExcerpt.defaultProps = {
 - [Flaviocopes](https://flaviocopes.com/page/react-handbook/)
 
 - [Stateful vs. Stateless React Components](https://medium.com/@cgcrutch18/stateful-vs-stateless-react-components-13f647f7fc4)
-
-```
-
-```

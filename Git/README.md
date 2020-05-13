@@ -40,6 +40,8 @@ text editors are capable of automating this.
 
 ## **Who made what changes**
 
+[git config](https://git-scm.com/docs/git-config#_description) : _Configure user information for local repositories_
+
 ```git
 git config --global user.email "me@example.com"
 ```
@@ -80,9 +82,12 @@ git commit -m "can write your message"
 
 _Only commit files which are add to current staging area & are modified_
 
+- [`-a`](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--a) : _A shortcut to stage any changes to tracked files and commit them in one step.(`not work on new files`)_
+- [`-p`](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--p) : _To know the diffrence made in files from last commit. And we want to stage them or not._
+
 ---
 
-## **Basic Information\***
+## **Basic Information**
 
 ```git
 git status
@@ -91,10 +96,57 @@ git status
 _Give every status/track you_
 
 ```git
+git diff
+```
+
+_To know the diffrence made in files from last commit for unstaged files.(For particular file pass its name as parameter)_
+
+- [`--staged`](https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-emgitdiffemltoptionsgt--cachedltcommitgt--ltpathgt82308203) : _To see the changes which are staged but not commited._
+
+```git
 git log
 ```
 
 _Commit history_
+
+**Flag**
+
+- [`-p`](https://git-scm.com/docs/git-log#Documentation/git-log.txt--p) : _Commit history with patch._
+- [`--stat`](https://git-scm.com/docs/git-log#Documentation/git-log.txt---statltwidthgtltname-widthgtltcountgt): Which files were changed and how many lines were added or removed.
+
+```git
+git show COMMIT-ID
+```
+
+_Patches of particular commit._
+
+---
+
+## **To Modify Files**
+
+```git
+git rm FILE-NAME
+```
+
+```git
+git mv FILE-NAME NEW-NAME
+```
+
+---
+
+## **Undoing Things**
+
+`git checkout` : Switch branches or restore working tree files.
+
+`git reset` : Reset current HEAD to the specified state or to remove file from stagging area.
+
+---
+
+## [**.gitignore files**](https://git-scm.com/docs/gitignore)
+
+.gitignore files are used to tell the git tool to intentionally ignore some files in a given Git repository. For example, this can be useful for configuration files or metadata files that a user may not want to check into the master branch.
+
+---
 
 `git reset --hard POINTER_ADDRESS`
 
