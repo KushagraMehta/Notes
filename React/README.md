@@ -112,6 +112,42 @@ setState(updater, [calback]);
 
 ---
 
+## React.Component v/s React.PureComponent
+
+| Component                                                                                  | PuureComponent                                                                |
+| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| It does not implement the _shouldComponentUpdate_ method. It always reture true by default | It impllement _shouldComponentUpdate_ with shallow props and state comparison |
+
+> **Shallow comparison** means that when comparing scalar values it compares their values, but when comparing objects it compares only references. It helps to improve the performance of the app.
+
+You should go for `React.PureComponent` when you can satisfy any of the below conditions.
+
+- State/Props should be an immutable object
+- State/Props should not have a hierarchy
+- You should call forceUpdate when data changes
+
+If you are using React.PureComponent you should make sure all child components are also pure.
+
+> For functional component we can user [React.memo( _func_comp_ )](https://reactjs.org/docs/react-api.html#reactmemo)
+
+[✨Important Article✨](https://codeburst.io/when-to-use-component-or-purecomponent-a60cfad01a81)
+
+---
+
+## [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html)
+
+In the typical React dataflow, `props` are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.
+
+**When to Use Refs**
+
+There are a few good use cases for refs:
+
+- Managing focus, text selection, or media playback.
+- Triggering imperative animations.
+- Integrating with third-party DOM libraries.
+
+---
+
 ## Type checking & Default value for _props_
 
 ```npm
@@ -171,6 +207,10 @@ Image from [**here!**](http://projects.wojtekmaj.pl/react-lifecycle-methods-diag
 > - [`UNSAFE_componentWillMount()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillmount)
 > - [`UNSAFE_componentWillUpdate()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillupdate)
 > - [`UNSAFE_componentWillReceiveProps()`](https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops)
+
+---
+
+## React Hooks
 
 ---
 
