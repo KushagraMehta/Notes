@@ -1,3 +1,4 @@
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -82,3 +83,4 @@ int main()
 	// Enter The Code
 	return 0;
 }
+```cpp
